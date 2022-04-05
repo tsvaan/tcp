@@ -7,7 +7,7 @@ __author__ = 'Vasily.A.Tsilko'
 import asyncio
 
 """
-In fact this couple of variables should be located in  appropriate def's,
+In fact this couple of variables should be located in appropriate def's,
 because global variables is evil. But I was pop them here for testers best overview.
 """
 ADDRESS = ("localhost", 10000)  # Server host and port, where it waiting a connection
