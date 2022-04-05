@@ -2,15 +2,14 @@
 # coding=utf-8
 __author__ = 'Vasily.A.Tsilko'
 # Python 3.5+
-# Simple TCP test client for tcp_server.py
+# Simple test client for tcp_server.py
 
 import asyncio
 import datetime
 import random
 
 ADDRESS = ("localhost", 10000)
-FILENAME = "test.txt"
-LOOPS = 10  # How many times send data string
+LOOPS = 100  # How many times will be send data string
 
 async def tcp_client():
    
@@ -25,7 +24,7 @@ async def tcp_client():
         print(f'Send: {message!r}')
         writer.write(message.encode())
         await writer.drain()
-        print('Close the connection')
         writer.close()
+        await writer.wait_closed()
 
 asyncio.run(tcp_client())

@@ -6,12 +6,17 @@ __author__ = 'Vasily.A.Tsilko'
 
 import asyncio
 
+"""
+In fact this couple of variables should be located in  appropriate def's,
+because global variables is evil. But I was pop them here for testers best overview.
+"""
 ADDRESS = ("localhost", 10000)  # Server host and port, where it waiting a connection
-FILENAME = "test.txt"  # Name of file where data will be added
+FILENAME = "test.txt"           # Name of file where data will be added
 
 async def get_it (reader, writer):
     data = await reader.readuntil(separator=b'\r')
     msg = data.decode()
+    
     try:
         with open (FILENAME, "a") as out:
             out.write(msg)
@@ -19,6 +24,7 @@ async def get_it (reader, writer):
             out.close()
     except Exception:
         print("Something wrong with file!")
+    
     if msg[21:23] == "00":
         print ("Cпортсмен, нагрудный номер {} прошёл отсечку {} в {}".format(msg[0:4], msg[5:7], msg[8:18]))
 
